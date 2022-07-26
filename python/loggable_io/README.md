@@ -7,8 +7,9 @@ The example below will redirect print statement to a file and will also print
 on stdout
 ```py3
 from contextlib import redirect_stdout
+from loggable_io import Loggable, LoggableIO
 
-class LoggableFile:
+class LoggableFile(Loggable):
     """
     Log to a file
     """
@@ -23,5 +24,6 @@ class LoggableFile:
 loggable = LoggableFile("log.txt")
 
 with redirect_stdout(LoggableIO(loggable)):
-    print("hello world")
+    print("hello world.")
+    print("This is another print.")
 ```

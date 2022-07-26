@@ -28,13 +28,13 @@ class LoggableIO(io.TextIOBase):
     Examples:
 
         from contextlib import redirect_stdout
-        
-        
+
+
         class LoggableFile:
-        
-            def save_log(self, s: str) -> None
+
+            def save_log(self, s: str) -> None:
                 with open('log.txt', 'a') as f:
-                    f.write(f"{s}\n")
+                    f.write(s)
 
         loggable = LoggableFile()
 

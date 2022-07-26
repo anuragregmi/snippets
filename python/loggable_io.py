@@ -2,8 +2,6 @@ import io
 import sys
 import contextlib
 
-from asgiref.sync import sync_to_async
-
 
 class Loggable:
     """Interface for classes that will be passed in LoggableIO"""
@@ -30,10 +28,17 @@ class LoggableIO(io.TextIOBase):
     Examples:
 
         from contextlib import redirect_stdout
+        
+        
+        class LoggableFile:
+        
+            def save_log(self, s: str) -> None
+                with open('log.txt', 'a') as f:
+                    f.write(f"{s}\n")
 
-        server = Server.objects.get(id=1)
+        loggable = LoggableFile()
 
-        with redirect_stdout(DatabaseAndStdOutIO(server=server)):
+        with redirect_stdout(LoggableIO(loggable)):
             print("hello world")
 
     """
